@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <!-- Background transparent -->
+  <defs>
+    <!-- Filter for subtle crisp outline enhancement -->
+    <filter id="crispShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <!-- 1. Outer Ring & Teal Inner Circle -->
+  <!-- Outer Coral-Red border -->
+  <circle cx="250" cy="250" r="236" fill="#FFFFFF" stroke="#E8582F" stroke-width="14" />
+  <!-- White spacer ring -->
+  <circle cx="250" cy="250" r="226" fill="#FFFFFF" />
+  <!-- Main Teal Circle Background -->
+  <circle cx="250" cy="250" r="214" fill="#3AA88C" />
+
+  <!-- 2. Dual-color Droplet / Flame Background Graphic -->
+  <g id="flame-droplet">
+    <!-- Yellow Upper Flame (Left/Top) -->
+    <path
+      d="M 215 68
+         C 215 68, 175 130, 160 190
+         C 145 250, 165 310, 195 350
+         C 210 320, 218 280, 222 240
+         C 226 195, 235 130, 215 68 Z"
+      fill="#F2A93B"
+    />
+
+    <!-- Green Lower Flame (Right/Bottom) -->
+    <path
+      d="M 215 68
+         C 225 120, 235 180, 220 235
+         C 205 285, 185 330, 205 370
+         C 230 420, 275 425, 305 390
+         C 335 355, 345 300, 335 245
+         C 325 190, 280 135, 215 68 Z"
+      fill="#7DBE3C"
+      opacity="0.95"
+    />
+
+    <!-- White curved contour accent along the green droplet edge -->
+    <path
+      d="M 185 340
+         C 215 410, 270 428, 305 395
+         C 335 365, 345 315, 338 265
+         C 330 220, 305 180, 275 145"
+      fill="none"
+      stroke="#FFFFFF"
+      stroke-width="9"
+      stroke-linecap="round"
+    />
+  </g>
+
+  <!-- 3. Overlaid Monogram Letters (C, G, E) -->
+  <!-- White outline for 'C' (rendered underneath) -->
+  <path
+    d="M 292 148
+       A 120 120 0 1 0 292 352
+       L 272 312
+       A 75 75 0 1 1 272 188
+       Z"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="26"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+  />
+
+  <!-- Navy Blue 'C' Body -->
+  <path
+    d="M 292 148
+       A 120 120 0 1 0 292 352
+       L 272 312
+       A 75 75 0 1 1 272 188
+       Z"
+    fill="#154284"
+  />
+
+  <!-- White outline for 'G' (rendered underneath 'G') -->
+  <path
+    d="M 288 185
+       C 245 185, 210 220, 210 270
+       C 210 320, 245 355, 295 355
+       C 330 355, 350 335, 350 310
+       L 350 252
+       L 275 252
+       L 275 285
+       L 315 285
+       L 315 315
+       C 310 322, 298 326, 288 326
+       C 260 326, 242 302, 242 270
+       C 242 238, 260 215, 288 215
+       C 305 215, 320 224, 328 236
+       L 352 210
+       C 338 194, 315 185, 288 185 Z"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="24"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+  />
+
+  <!-- Coral-Red 'G' Body -->
+  <path
+    d="M 288 185
+       C 245 185, 210 220, 210 270
+       C 210 320, 245 355, 295 355
+       C 330 355, 350 335, 350 310
+       L 350 252
+       L 275 252
+       L 275 285
+       L 315 285
+       L 315 315
+       C 310 322, 298 326, 288 326
+       C 260 326, 242 302, 242 270
+       C 242 238, 260 215, 288 215
+       C 305 215, 320 224, 328 236
+       L 352 210
+       C 338 194, 315 185, 288 185 Z"
+    fill="#E8582F"
+  />
+
+  <!-- Small Navy 'E' in the interior notch -->
+  <text
+    x="256"
+    y="272"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="28"
+    font-weight="900"
+    fill="#154284"
+    text-anchor="middle"
+    dominant-baseline="central"
+  >E</text>
+</svg>

@@ -1,0 +1,10 @@
+{
+  "name": "Cyden Distributors",
+  "description": "Official EABL Gold Distributor (2024) in Eldoret, Kenya. Supplying 600+ outlets with genuine beer, spirits, wines, Tusker, Guinness, Johnnie Walker, and Smirnoff across the North Rift region.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
