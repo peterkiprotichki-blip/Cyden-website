@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { ShoppingBag, Wine, Sparkles, Plus, Minus } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ShoppingBag, Wine, Sparkles, Plus, Minus, Check } from 'lucide-react';
 import { Product } from '../types';
 import { formatCurrency } from '../services/products';
 import { useCart } from '../context/CartContext';
@@ -14,6 +14,7 @@ interface ProductCardProps {
 export default function ProductCard({ product, onRequestOrder, index = 0 }: ProductCardProps) {
   const [currentImg, setCurrentImg] = useState<string | null>(product.image_url || product.fallback_image_url || null);
   const [hasFailedAll, setHasFailedAll] = useState(false);
+  const [justAddedAnim, setJustAddedAnim] = useState<number | null>(null);
   const { addToCart, updateQuantity, getItemQuantity, setIsCartOpen } = useCart();
 
   const quantityInCart = getItemQuantity(product.id);
@@ -26,6 +27,12 @@ export default function ProductCard({ product, onRequestOrder, index = 0 }: Prod
     }
   };
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (!product.in_stock) return;
+    addToCart(product, 1);
+    setJustAddedAnim(Date.now());
+  };
+
   return (
     <motion.div
       id={`product-card-${product.id}`}
@@ -34,9 +41,45 @@ export default function ProductCard({ product, onRequestOrder, index = 0 }: Prod
       viewport={{ once: true, margin: '-30px' }}
       transition={{ duration: 0.35, delay: Math.min(index * 0.04, 0.25) }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="group flex flex-col bg-white rounded-2xl border border-neutral-200/90 hover:border-[#3AA88C] shadow-xs hover:shadow-lg transition-all duration-300 overflow-hidden relative"
+      whileTap={product.in_stock ? { scale: 0.985 } : undefined}
+      onClick={handleCardClick}
+      className={`group flex flex-col bg-white rounded-2xl border transition-all duration-300 overflow-hidden relative select-none ${
+        product.in_stock
+          ? 'cursor-pointer hover:border-[#3AA88C] shadow-xs hover:shadow-lg'
+          : 'cursor-not-allowed opacity-80 border-neutral-200'
+      } ${
+        quantityInCart > 0
+          ? 'border-[#3AA88C] ring-2 ring-[#3AA88C]/20 shadow-sm'
+          : 'border-neutral-200/90'
+      }`}
+      role="button"
+      tabIndex={product.in_stock ? 0 : -1}
+      aria-label={`${product.name} - ${formatCurrency(product.price)}. Click to add to cart.`}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleCardClick(e as any);
+        }
+      }}
     >
-      {/* Minimal Top Badges (Only when essential: Out of stock or Featured) */}
+      {/* Floating "+1" Burst Animation on Click */}
+      <AnimatePresence>
+        {justAddedAnim && (
+          <motion.div
+            key={justAddedAnim}
+            initial={{ opacity: 1, y: 0, scale: 0.8 }}
+            animate={{ opacity: 0, y: -36, scale: 1.15 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.65, ease: 'easeOut' }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none px-3.5 py-1.5 rounded-full bg-[#1B3E6F] text-white text-xs font-black shadow-xl flex items-center gap-1.5 border border-white/30 backdrop-blur-xs whitespace-nowrap"
+          >
+            <Plus className="w-3.5 h-3.5 text-[#3AA88C] stroke-[3]" />
+            <span>Added ({quantityInCart})</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Badges Top Bar */}
       <div className="absolute top-2.5 left-2.5 right-2.5 z-10 flex items-center justify-between pointer-events-none">
         {product.featured ? (
           <span className="inline-flex items-center gap-1 bg-[#1B3E6F]/90 backdrop-blur-xs text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-xs">
@@ -47,9 +90,23 @@ export default function ProductCard({ product, onRequestOrder, index = 0 }: Prod
           <span />
         )}
 
-        {!product.in_stock && (
+        {/* In Cart Indicator or Out of Stock */}
+        {!product.in_stock ? (
           <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-neutral-900/80 text-white backdrop-blur-xs shadow-xs">
             Out of Stock
+          </span>
+        ) : quantityInCart > 0 ? (
+          <motion.span
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black bg-[#3AA88C] text-white shadow-xs"
+          >
+            <Check className="w-3 h-3 stroke-[3]" />
+            <span>{quantityInCart} in cart</span>
+          </motion.span>
+        ) : (
+          <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#3AA88C]/15 text-[#2C856E]">
+            Click to add
           </span>
         )}
       </div>
@@ -64,7 +121,7 @@ export default function ProductCard({ product, onRequestOrder, index = 0 }: Prod
             loading="lazy"
             whileHover={{ scale: 1.06 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="w-full h-full object-contain mix-blend-multiply filter drop-shadow-sm"
+            className="w-full h-full object-contain mix-blend-multiply filter drop-shadow-sm pointer-events-none"
           />
         ) : (
           <div className="flex flex-col items-center justify-center text-neutral-400 p-4 text-center">
@@ -111,11 +168,17 @@ export default function ProductCard({ product, onRequestOrder, index = 0 }: Prod
               Unavailable
             </span>
           ) : quantityInCart > 0 ? (
-            <div className="flex items-center gap-1.5 flex-shrink-0">
+            <div
+              className="flex items-center gap-1.5 flex-shrink-0"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="flex items-center border border-[#3AA88C] rounded-xl bg-emerald-50/70 overflow-hidden shadow-2xs">
                 <button
                   type="button"
-                  onClick={() => updateQuantity(product.id, quantityInCart - 1)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    updateQuantity(product.id, quantityInCart - 1);
+                  }}
                   className="w-7 h-7 flex items-center justify-center text-neutral-800 hover:bg-[#3AA88C] hover:text-white transition-colors cursor-pointer"
                   aria-label="Decrease quantity"
                 >
@@ -126,7 +189,11 @@ export default function ProductCard({ product, onRequestOrder, index = 0 }: Prod
                 </span>
                 <button
                   type="button"
-                  onClick={() => updateQuantity(product.id, quantityInCart + 1)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addToCart(product, 1);
+                    setJustAddedAnim(Date.now());
+                  }}
                   className="w-7 h-7 flex items-center justify-center text-neutral-800 hover:bg-[#3AA88C] hover:text-white transition-colors cursor-pointer"
                   aria-label="Increase quantity"
                 >
@@ -136,7 +203,10 @@ export default function ProductCard({ product, onRequestOrder, index = 0 }: Prod
 
               <button
                 type="button"
-                onClick={() => setIsCartOpen(true)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsCartOpen(true);
+                }}
                 className="w-7 h-7 rounded-xl bg-[#1B3E6F] text-white flex items-center justify-center hover:bg-[#122B4E] transition-colors cursor-pointer"
                 title="View in Cart"
                 aria-label="View in Cart"
@@ -148,7 +218,11 @@ export default function ProductCard({ product, onRequestOrder, index = 0 }: Prod
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.96 }}
-              onClick={() => addToCart(product, 1)}
+              onClick={(e) => {
+                e.stopPropagation();
+                addToCart(product, 1);
+                setJustAddedAnim(Date.now());
+              }}
               className="px-3.5 py-2 rounded-xl bg-[#3AA88C] hover:bg-[#2F8D75] text-white font-bold text-xs tracking-wide transition-all shadow-xs flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
               title={`Add ${product.name} to cart`}
             >
