@@ -126,9 +126,31 @@ export interface Branch {
   description: string;
 }
 
+export interface MilestoneDetail {
+  label: string;
+  value: string;
+}
+
 export interface Milestone {
   year: string;
   title: string;
   description: string;
   highlight?: boolean;
+  badgeText?: string;
+  details?: MilestoneDetail[];
+}
+
+export type RouteCategory = 'core_route' | 'van' | 'counter' | 'support';
+
+export interface DistributionRoute {
+  id: string;
+  route: string;
+  phoneNumber: string;
+  phoneRaw: string;
+  tillNumber?: string;
+  site: string;
+  category: RouteCategory;
+  categoryLabel: string;
+  waypoints?: string[];
+  vehicleType?: string;
 }

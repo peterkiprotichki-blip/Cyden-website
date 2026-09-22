@@ -43,7 +43,7 @@ export default function Navbar({ currentRoute, onNavigate, onOpenOrderModal }: N
               EABL Gold Distributor 2024
             </span>
             <span className="hidden sm:inline text-white/80">
-              Serving 600+ Outlets across Uasin Gishu, Elgeyo Marakwet & Nandi
+              Serving 600+ Outlets • Open 7 Days Daily (Until 8:00 PM)
             </span>
           </div>
           <div className="flex items-center gap-4 text-xs font-medium text-white/90">

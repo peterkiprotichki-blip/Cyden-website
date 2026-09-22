@@ -1,4 +1,4 @@
-import { Branch, Milestone } from '../types';
+import { Branch, Milestone, DistributionRoute } from '../types';
 
 export const COMPANY_INFO = {
   name: 'Cyden Distributors Limited',
@@ -51,7 +51,7 @@ export const BRANCHES: Branch[] = [
     county: 'Uasin Gishu County',
     phone: '+254722400409',
     phoneDisplay: '0722 400 409',
-    operatingHours: 'Mon – Sat: 7:30 AM – 6:30 PM | Sun: Closed / Emergency Dispatches',
+    operatingHours: 'Mon – Sat: 7:30 AM – 8:00 PM | Sundays: 8:00 AM – 8:00 PM (Open 7 Days)',
     description: 'Central distribution headquarters and heavy logistics warehouse housing comprehensive EABL portfolio inventory with dedicated cold chain bays and delivery fleet staging.',
     coordinates: { lat: 0.515, lng: 35.288333 },
     coordinatesDisplay: '0°30\'54"N, 35°17\'18"E (0.5150° N, 35.2883° E)',
@@ -72,7 +72,7 @@ export const BRANCHES: Branch[] = [
     county: 'Elgeyo Marakwet County',
     phone: '+254754722746',
     phoneDisplay: '0754 722 746',
-    operatingHours: 'Mon – Sat: 8:00 AM – 6:00 PM',
+    operatingHours: 'Mon – Sat: 8:00 AM – 8:00 PM | Sundays: 8:30 AM – 8:00 PM (Open 7 Days)',
     description: 'Highland distribution sub-depot serving retail accounts, hotels, and tourist lounges across Iten township and the Kerio Valley escarpment rim with rapid weekly replenishment.',
     coordinates: { lat: 0.6732, lng: 35.5085 },
     coordinatesDisplay: '0°40\'23"N, 35°30\'30"E (0.6732° N, 35.5085° E)',
@@ -128,6 +128,56 @@ export const MILESTONES: Milestone[] = [
     title: 'EABL Gold Distributor Award',
     description: 'Conferred the prestigious Gold Distributor distinction by EABL for outstanding sales volume, retail partner satisfaction, and exemplary supply chain standards.',
     highlight: true,
+    badgeText: 'Gold Distinction',
+  },
+  {
+    year: '2025',
+    title: 'RTM Optimization & Premiumization',
+    description: 'Core Route-to-Market (RTM) enhancement to guarantee strict stock availability and aggressive execution of portfolio premiumization to capture high-value market segments across all distribution nodes.',
+    details: [
+      {
+        label: 'Focus',
+        value: 'Core Route-to-Market (RTM) enhancement to guarantee strict stock availability.'
+      },
+      {
+        label: 'Strategy',
+        value: 'Aggressive execution of portfolio premiumization to capture high-value market segments across all distribution nodes.'
+      }
+    ]
+  },
+  {
+    year: '2026',
+    title: 'Financial Triumph (FY 2025/2026)',
+    description: 'Successfully hit and achieved a monumental Ksh 3.0 Billion gross revenue milestone, anchored by the successful transition to sustainable logistics and optimized green fleet frameworks initiated early in the year.',
+    highlight: true,
+    badgeText: 'Ksh 3.0B Milestone',
+    details: [
+      {
+        label: 'Achievement',
+        value: 'Successfully hit and achieved a monumental Ksh 3.0 Billion gross revenue milestone.'
+      },
+      {
+        label: 'Operational Backbone',
+        value: 'Anchored by the successful transition to sustainable logistics and optimized green fleet frameworks initiated early in the year.'
+      }
+    ]
+  },
+  {
+    year: '2027',
+    title: 'Digital Acceleration & Next-Level Scaling (FY 2026/2027)',
+    description: 'Aggressive commercial drive to capture Ksh 4.5 Billion gross revenue by scaling online visibility, integrating advanced B2B marketplace options, and driving digital client acquisition channels.',
+    highlight: true,
+    badgeText: 'Ksh 4.5B Target',
+    details: [
+      {
+        label: 'Target',
+        value: 'Aggressive commercial drive to capture Ksh 4.5 Billion gross revenue.'
+      },
+      {
+        label: 'Strategy',
+        value: 'Scaling online visibility, integrating advanced B2B marketplace options, and driving digital client acquisition channels.'
+      }
+    ]
   }
 ];
 
@@ -142,4 +192,150 @@ export const BRANDS = [
   { name: 'Captain Morgan', category: 'Rum', logoText: 'CAPTAIN MORGAN', color: '#9A3412', desc: 'Spice & Oak-Aged Dark Rum' },
   { name: 'Tanqueray', category: 'Gin', logoText: 'TANQUERAY', color: '#065F46', desc: 'Fresh Citrus Botanicals' },
   { name: 'Baileys', category: 'Liquor', logoText: 'BAILEYS', color: '#78350F', desc: 'Original Irish Cream' },
+];
+
+export const DISTRIBUTION_ROUTES: DistributionRoute[] = [
+  {
+    id: 'route-town',
+    route: 'Town',
+    phoneNumber: '0740 631 030',
+    phoneRaw: '+254740631030',
+    tillNumber: '5891085',
+    site: 'Town – Kimumu – Chepkanga via Munyaka, Sogomo through Marura',
+    category: 'core_route',
+    categoryLabel: 'Core Route',
+    waypoints: ['Eldoret CBD', 'Kimumu', 'Chepkanga', 'Munyaka', 'Sogomo', 'Marura'],
+    vehicleType: 'Primary Route Truck',
+  },
+  {
+    id: 'route-langas',
+    route: 'Langas',
+    phoneNumber: '0740 631 039',
+    phoneRaw: '+254740631039',
+    tillNumber: '5891083',
+    site: 'Pioneer – Elgon View – Langas – Kapseret via Kisumu Ndogo corner',
+    category: 'core_route',
+    categoryLabel: 'Core Route',
+    waypoints: ['Pioneer', 'Elgon View', 'Langas', 'Kapseret', 'Kisumu Ndogo'],
+    vehicleType: 'Primary Route Truck',
+  },
+  {
+    id: 'route-van-a',
+    route: 'Van A',
+    phoneNumber: '0740 631 102',
+    phoneRaw: '+254740631102',
+    tillNumber: '324357',
+    site: 'Eldoret CBD – Langas (Exclusively UDV Spirits Van)',
+    category: 'van',
+    categoryLabel: 'UDV Spirits Van',
+    waypoints: ['Eldoret CBD', 'Langas'],
+    vehicleType: 'Dedicated UDV Spirits Van',
+  },
+  {
+    id: 'route-van-b',
+    route: 'Van B',
+    phoneNumber: '0740 631 144',
+    phoneRaw: '+254740631144',
+    tillNumber: '324358',
+    site: 'Annex, Rupa environs, Kipkorgot, Kimumu, Chep junction to Marura (Exclusively UDV Van)',
+    category: 'van',
+    categoryLabel: 'UDV Spirits Van',
+    waypoints: ['Annex', 'Rupa Environs', 'Kipkorgot', 'Kimumu', 'Chep Junction', 'Marura'],
+    vehicleType: 'Dedicated UDV Spirits Van',
+  },
+  {
+    id: 'route-flax-metkei',
+    route: 'Flax / Metkei',
+    phoneNumber: '0740 631 168',
+    phoneRaw: '+254740631168',
+    tillNumber: '5891087',
+    site: 'Annex, Kipkorgot, Naiberi, Kaptagat, Flax, Chepkorio to Metkei via Kamwosor',
+    category: 'core_route',
+    categoryLabel: 'Regional Corridor',
+    waypoints: ['Annex', 'Kipkorgot', 'Naiberi', 'Kaptagat', 'Flax', 'Chepkorio', 'Kamwosor', 'Metkei'],
+    vehicleType: 'Heavy Highland Carrier',
+  },
+  {
+    id: 'route-selia-kesses',
+    route: 'Selia / Kesses',
+    phoneNumber: '0740 631 204',
+    phoneRaw: '+254740631204',
+    tillNumber: '324347',
+    site: 'Selia, Mosop, Kabiyet – Himaki, Nandi Hills, Lessos, Kesses, Moi University',
+    category: 'core_route',
+    categoryLabel: 'Regional Corridor',
+    waypoints: ['Selia', 'Mosop', 'Kabiyet', 'Himaki', 'Nandi Hills', 'Lessos', 'Kesses', 'Moi University'],
+    vehicleType: 'Heavy Regional Carrier',
+  },
+  {
+    id: 'route-nandi-burnt',
+    route: 'Nandi / Burnt',
+    phoneNumber: '0740 631 262',
+    phoneRaw: '+254740631262',
+    tillNumber: '543662',
+    site: 'Kapseret, Mlango, Mosoriot, Namgoi, Kapsabet & Annex, Ngeria, Cheplasgei, Cheptiret, Burnt Forest',
+    category: 'core_route',
+    categoryLabel: 'Regional Corridor',
+    waypoints: ['Kapseret', 'Mlango', 'Mosoriot', 'Namgoi', 'Kapsabet', 'Annex', 'Ngeria', 'Cheplasgei', 'Cheptiret', 'Burnt Forest'],
+    vehicleType: 'Heavy Regional Carrier',
+  },
+  {
+    id: 'route-rupa-counter',
+    route: 'Rupa Counter',
+    phoneNumber: '0740 631 285',
+    phoneRaw: '+254740631285',
+    tillNumber: '992479',
+    site: 'Serves walk-in customers and direct wholesale collection at Rupa Godowns, Eldoret',
+    category: 'counter',
+    categoryLabel: 'Depot Counter',
+    waypoints: ['Rupa Godowns', 'Malaba Road Corridor', 'Eldoret Industrial Area'],
+    vehicleType: 'Main Depot Walk-In Counter',
+  },
+  {
+    id: 'route-iten-counter',
+    route: 'Iten Counter',
+    phoneNumber: '0740 631 290',
+    phoneRaw: '+254740631290',
+    tillNumber: '324296',
+    site: 'Serves walk-in customers and direct collection at Iten Sub-Store (Sitet Building)',
+    category: 'counter',
+    categoryLabel: 'Depot Counter',
+    waypoints: ['Sitet Building', 'Iten Town Centre', 'Escarpment Viewpoint'],
+    vehicleType: 'Sub-Store Walk-In Counter',
+  },
+  {
+    id: 'route-su-support',
+    route: 'SU (Support Unit)',
+    phoneNumber: '0740 631 345',
+    phoneRaw: '+254740631345',
+    site: 'Central customer care, billing inquiries, and account escalation support',
+    category: 'support',
+    categoryLabel: 'Customer Support',
+    waypoints: ['Account Onboarding', 'Credit Support', 'Customer Care Desk'],
+    vehicleType: 'Central Hotline Desk',
+  },
+  {
+    id: 'route-iten-route',
+    route: 'Iten Route',
+    phoneNumber: '0740 631 358',
+    phoneRaw: '+254740631358',
+    tillNumber: '4312064',
+    site: 'Serves Iten town and environs to Kapsowar, Kapkoi, Sergoit, and Biretwo',
+    category: 'core_route',
+    categoryLabel: 'Regional Corridor',
+    waypoints: ['Iten Town', 'Kapsowar', 'Kapkoi', 'Sergoit', 'Biretwo'],
+    vehicleType: 'Highland Logistics Fleet',
+  },
+  {
+    id: 'route-back-office',
+    route: 'Back Office',
+    phoneNumber: '0740 631 373',
+    phoneRaw: '+254740631373',
+    tillNumber: '4225308',
+    site: 'Central delivery dispatch, fleet logistics coordination, and administrative desk',
+    category: 'support',
+    categoryLabel: 'Back Office Desk',
+    waypoints: ['Fleet Tracking', 'Dispatch Coordination', 'Invoicing & Collections'],
+    vehicleType: 'Logistics Operations Desk',
+  },
 ];

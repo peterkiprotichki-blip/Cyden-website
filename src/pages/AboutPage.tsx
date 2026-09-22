@@ -249,14 +249,31 @@ export default function AboutPage({ onNavigate, onOpenOrderModal }: AboutPagePro
                     </h4>
                     {item.highlight && (
                       <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#F2A93B] text-neutral-900 shadow-xs">
-                        <Award className="w-3 h-3" />
-                        Gold Distinction
+                        {item.badgeText?.toLowerCase().includes('target') ? (
+                          <TrendingUp className="w-3 h-3 text-neutral-900" />
+                        ) : (
+                          <Award className="w-3 h-3 text-neutral-900" />
+                        )}
+                        {item.badgeText || 'Gold Distinction'}
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-neutral-600 leading-relaxed">
-                    {item.description}
-                  </p>
+                  {item.details && item.details.length > 0 ? (
+                    <div className="mt-3 space-y-2">
+                      {item.details.map((detail, dIdx) => (
+                        <div key={dIdx} className="text-sm text-neutral-700 flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-2.5">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-[#1B3E6F]/10 text-[#1B3E6F] shrink-0 self-start">
+                            {detail.label}
+                          </span>
+                          <span className="text-neutral-600 leading-relaxed">{detail.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-neutral-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                  )}
                 </motion.div>
               </motion.div>
             ))}

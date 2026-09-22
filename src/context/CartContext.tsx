@@ -5,20 +5,19 @@ const CART_STORAGE_KEY = 'cyden_cart_items_v2';
 const ORDERS_STORAGE_KEY = 'cyden_customer_orders_v2';
 
 export const POPULAR_DELIVERY_AREAS = [
+  'Town Route (Town, Kimumu, Chepkanga, Munyaka, Sogomo, Marura)',
+  'Langas Route (Pioneer, Elgon View, Langas, Kapseret)',
+  'Van A (Eldoret CBD & Langas - UDV Spirits)',
+  'Van B (Annex, Rupa, Kipkorgot, Kimumu, Marura - UDV Spirits)',
+  'Flax / Metkei Route (Annex, Naiberi, Kaptagat, Flax, Chepkorio, Metkei)',
+  'Selia / Kesses Route (Selia, Mosop, Kabiyet, Nandi Hills, Lessos, Moi Univ)',
+  'Nandi / Burnt Route (Kapseret, Mosoriot, Kapsabet, Cheptiret, Burnt Forest)',
+  'Iten Route (Iten, Kapsowar, Kapkoi, Sergoit, Biretwo)',
+  'Rupa Godowns Counter (Eldoret Main Depot Walk-in)',
+  'Iten Sub-Store Counter (Sitet Building Walk-in)',
   'Eldoret CBD / Town Centre',
-  'Annex / Moi University Town Campus',
   'Kapsoya Estate',
-  'Elgon View',
-  'Pioneer Estate',
-  'Langas / Racecourse',
   'Huruma / West Indies',
-  'Maili Nne / Kipkorgot',
-  'Kimumu / University Way',
-  'Action Estate',
-  'Rock Centre / Bacon',
-  'Iten Town / Viewpoint',
-  'Chepkoilel / University of Eldoret',
-  'Kapsabet Town (Route Delivery)',
 ];
 
 interface CartContextType {

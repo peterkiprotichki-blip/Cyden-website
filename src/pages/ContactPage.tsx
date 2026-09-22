@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { COMPANY_INFO, BRANCHES } from '../data/companyData';
 import AmbientBackground from '../components/AmbientBackground';
+import RoutesDirectory from '../components/RoutesDirectory';
 
 // Custom X and TikTok icons
 function XIcon({ className = 'w-4 h-4' }: { className?: string }) {
@@ -164,7 +165,11 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                   </div>
                   <div>
                     <strong className="block text-xs font-bold uppercase text-neutral-400">Operating Hours</strong>
-                    <span className="font-semibold text-neutral-800">{BRANCHES[0].operatingHours}</span>
+                    <span className="font-semibold text-neutral-800 block">{BRANCHES[0].operatingHours}</span>
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full mt-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                      <span>Open Daily Until 8:00 PM (Inc. Sundays)</span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -415,7 +420,12 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
         </div>
       </section>
 
-      {/* 3. EMBEDDED MAP SECTION WITH BRANCH SELECTOR */}
+      {/* 3. FIELD DISTRIBUTION ROUTES & TILLS DIRECTORY */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <RoutesDirectory />
+      </section>
+
+      {/* 4. EMBEDDED MAP SECTION WITH BRANCH SELECTOR */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
